@@ -14,6 +14,7 @@ module.exports = [
         isHtmlLike : true,
         isJsonLike : true
     },
+    
     {
         reg : /^\/(.*\.(?:tpl|jade|html))$/i,
         isHtmlLike : true,

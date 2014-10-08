@@ -1,7 +1,9 @@
 {
-    "name": "builder",
+    "name": "ssite-builder",
+    "description": "builder for ssite",
     "version": "0.0.1",
-    "description": "",
+    "author": "qdsang",
+    "license": "MIT",
     "main": "index.js",
     "preferGlobal": true,
     "bin": {
@@ -22,7 +24,7 @@
         "fis-parser-handlebars" : "0.0.1",
         "fis-optimizer-html-minifier": "0.0.9",
         "fis-parser-compass": "0.0.2",
-        "fis-parser-jade": "0.0.12",
+        "fis-parser-jade": "0.0.11",
         "fis-parser-jade-inline": "*",
         "fis-parser-less": "0.1.1",
         "fis-parser-coffee-script": "0.0.2",
@@ -32,7 +34,5 @@
         "fis-postprocessor-region": "0.0.x",
         "fis-postpackager-simple": "0.0.23",
         "fis-postpackager-autoload": "0.0.13"
-    },
-    "author": ["qdsang"],
-    "license": "MIT"
+    }
 }
