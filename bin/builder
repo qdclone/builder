@@ -8,4 +8,7 @@ var options = {
 };
 
 var build = builder(options);
-build.run();
+build.run(function(ret){
+	console.log(ret);
+	console.log('build complie!');
+});

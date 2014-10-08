@@ -21,37 +21,37 @@ Builder.prototype.initialize = function(options) {
 };
 
 
-Builder.prototype.run = function() {
+Builder.prototype.run = function(done) {
 	//fisOptions = {paths: []};
 	fisOptions.paths = this.paths || [];
+	//fisOptions.verbose = 1;
 	fis.run(fisOptions);
+	
+	fis.getFileRet(function(ret) {
+		done && done(ret);
+	});
 };
 
 fis.project.getSource = function() {
-	var root = fis.project.getProjectPath(),
+	var rootSrc, root = rootSrc = fis.project.getProjectPath(),
 		source = {},
 		project_exclude = new RegExp(
 			'^' + fis.util.escapeReg(root + '/') +
 			'(?:output\\b|fis-[^\\/]+$)',
 			'i'),
 		include = fis.config.get('project.include'),
-		exclude = fis.config.get('project.exclude'),
-		rootSrc = root;
-	
-	//console.log('root' + ': ' + root);
-	fis.util.find(root, null, project_exclude).forEach(function(file) {
-		file = fis.file(file);
-		file.root = root;
-		if (file.release && fis.util.filter(file.subpath, include, exclude)) {
-			source[file.subpath] = file;
-		}
-	});
+		exclude = fis.config.get('project.exclude');
+
+	readFile(root);
 
 	var paths = fisOptions.paths;
 	for (var i = 0; i < paths.length; i++) {
 		root = paths[i];
-		//console.log('' + root);
 		fis.project.setProjectRoot(path.dirname(root));
+		readFile(root);
+	}
+
+	function readFile(root) {
 		fis.util.find(root, null, project_exclude).forEach(function(file) {
 			file = fis.file(file);
 			file.root = root;
@@ -60,8 +60,8 @@ fis.project.getSource = function() {
 			}
 		});
 	}
-	console.log(source);
 
 	fis.project.setProjectRoot(rootSrc);
+	//console.log(source);
 	return source;
 };

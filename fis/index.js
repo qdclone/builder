@@ -67,6 +67,23 @@ fis.run = function(opts){
     });
 }
 
+var fisFileRetCallback = function(){};
+fis.getFileRet = function(callback){
+    fisFileRetCallback = callback;
+};
+var postpackager = fis.config.get('modules.postpackager');
+postpackager.push(function (ret, conf, settings, opt) {
+    //打包后处理
+    // if (!opt.pack){
+    //     return;
+    // }
+
+    fisFileRetCallback(ret, conf, settings, opt);
+});
+fis.config.set('modules.postpackager', postpackager);
+
+
+
 // 设置自动刷新页面工具端口号
 function livereloadAutoPort(cb){
     var portNext = 8140;
