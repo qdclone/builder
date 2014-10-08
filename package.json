@@ -1,0 +1,38 @@
+{
+    "name": "builder",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "preferGlobal": true,
+    "bin": {
+        "ssite-builder": "bin/builder"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [ "fis", "ssite", "builder" ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ssite/builder.git"
+    },
+    "dependencies": {
+        "fis": "1.7.14",
+        "fis-lint-jshint": "0.0.9",
+        "fis-parser-marked": "0.0.5",
+        "fis-parser-handlebars" : "0.0.1",
+        "fis-optimizer-html-minifier": "0.0.9",
+        "fis-parser-compass": "0.0.2",
+        "fis-parser-jade": "0.0.12",
+        "fis-parser-jade-inline": "*",
+        "fis-parser-less": "0.1.1",
+        "fis-parser-coffee-script": "0.0.2",
+        "fis-parser-bdtmpl-chassis": "0.0.4",
+        "fis-parser-utc": "0.0.2",
+        "fis-parser-psd": "0.0.1",
+        "fis-postprocessor-region": "0.0.x",
+        "fis-postpackager-simple": "0.0.23",
+        "fis-postpackager-autoload": "0.0.13"
+    },
+    "author": ["qdsang"],
+    "license": "MIT"
+}
