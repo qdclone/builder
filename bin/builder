@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 
 var builder = require("../index.js");
+var path = require('path');
 
-var options = {'path': '../examples/simple'};
+var options = {
+	'paths': path.resolve('./examples/simple')
+};
+
 var build = builder(options);
 build.run();

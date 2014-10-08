@@ -40,6 +40,9 @@ fis.run = function(opts){
     if (!opts.output) {
         opts.output = path.resolve(__dirname + '/output');
     }
+    if (!opts.file) {
+        opts.file = path.resolve(__dirname + '/configs/null.js');
+    }
 
     opts2argv = ['dest', 'md5', 'root', 'file'];
     for (i = 0; i < opts2argv.length; i++) {
