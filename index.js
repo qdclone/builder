@@ -14,7 +14,7 @@ function Builder(options) {
 
 Builder.prototype.initialize = function(options) {
 	var paths = options.paths || [];
-	if (typeof paths != 'array') {
+	if (!Array.isArray(paths)) {
 		paths = [paths];
 	}
 	this.paths = paths;
@@ -24,6 +24,8 @@ Builder.prototype.initialize = function(options) {
 Builder.prototype.run = function(done) {
 	//fisOptions = {paths: []};
 	fisOptions.paths = this.paths || [];
+	fisOptions.clean = 1;
+	fisOptions.pack = 1;
 	//fisOptions.verbose = 1;
 	fis.run(fisOptions);
 	
@@ -42,12 +44,18 @@ fis.project.getSource = function() {
 		include = fis.config.get('project.include'),
 		exclude = fis.config.get('project.exclude');
 
+	var oldNamespace = fis.config.get('namespace') || '';
 	readFile(root);
 
-	var paths = fisOptions.paths;
+	var paths = fisOptions.paths, namespace = '';
 	for (var i = 0; i < paths.length; i++) {
 		root = paths[i];
+		namespace = root.substr(path.dirname(root).length + 1);
+		//console.log('namespace: ' + namespace + ' root:' + root);
+
+		//fis.config.set('namespace', namespace);
 		fis.project.setProjectRoot(path.dirname(root));
+		
 		readFile(root);
 	}
 
@@ -61,7 +69,7 @@ fis.project.getSource = function() {
 		});
 	}
 
+	//fis.config.set('namespace', oldNamespace);
 	fis.project.setProjectRoot(rootSrc);
-	//console.log(source);
 	return source;
 };

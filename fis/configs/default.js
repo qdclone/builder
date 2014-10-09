@@ -1,13 +1,14 @@
 var plugins = {
     define : require('../plugins/postprocessor/define.js'),
-    roadmapPath : require('./roadmap.path.js')
+    roadmapPath : require('./roadmap.path.js'),
+    sp : require('../plugins/postprocessor/sp.js')
 };
 module.exports = {
     urlPrefix : '',
     releasePrefix : '',
     project : {
         fileType : {
-            text : 'handlebars, jade, ejs, jsx, styl, jtpl',
+            text : 'handlebars, jade, ejs, jsx, styl, jtpl, sp',
             image: 'psd'
         }
     },
@@ -36,8 +37,8 @@ module.exports = {
             js: 'jshint'
         },
         postprocessor : {
-            js : ['region', plugins.define, 'jswrapper', 'require-async'],
-            html: ['region', 'require-async'],
+            js : ['region', plugins.define, 'require-async'],
+            html: [plugins.sp, 'region', 'require-async'],
             css: 'region',
         },
         optimizer : {
@@ -59,6 +60,7 @@ module.exports = {
             coffee : 'js',
             jade : 'html',
             md: 'html',
+            sp: 'html',
             psd: 'png'
         },
         path : plugins.roadmapPath

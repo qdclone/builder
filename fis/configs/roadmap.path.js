@@ -20,7 +20,7 @@ module.exports = [
     },
     
     {
-        reg : /^\/(.*\.(?:tpl|jade|html))$/i,
+        reg : /^\/(.*\.(?:tpl|jade|html|ejs|sp))$/i,
         isHtmlLike : true,
         release : '/$1'
     },
@@ -37,10 +37,10 @@ module.exports = [
         release : '/$1'
     },
     
-    {
-        reg : 'map.json',
-        release : false
-    },
+    // {
+    //     reg : 'map.json',
+    //     release : false
+    // },
     {
         reg : '**',
         useHash : false,

@@ -44,6 +44,13 @@ fis.run = function(opts){
         opts.file = path.resolve(__dirname + '/configs/null.js');
     }
 
+    opts2argv = ['domains', 'lint', 'test', 'optimize', 'pack', 'watch', 'live', 'clean', 'unique', 'verbose'];
+    for (i = 0; i < opts2argv.length; i++) {
+        key = opts2argv[i], value = opts[key];
+        if (value) {
+            argv.push('--' + key);
+        }
+    }
     opts2argv = ['dest', 'md5', 'root', 'file'];
     for (i = 0; i < opts2argv.length; i++) {
         key = opts2argv[i], value = opts[key];
@@ -52,14 +59,8 @@ fis.run = function(opts){
             argv.push(value);
         }
     }
-    opts2argv = ['domains', 'lint', 'test', 'optimize', 'pack', 'watch', 'live', 'clean', 'unique', 'verbose'];
-    for (i = 0; i < opts2argv.length; i++) {
-        key = opts2argv[i], value = opts[key];
-        if (value) {
-            argv.push('--' + key);
-        }
-    }
 
+    console.log('\n 模式：' + ' ' + argv.join(' '));
 
     livereloadAutoPort(function(){
         //fis.runLoad(argv);
@@ -77,7 +78,7 @@ postpackager.push(function (ret, conf, settings, opt) {
     // if (!opt.pack){
     //     return;
     // }
-
+    
     fisFileRetCallback(ret, conf, settings, opt);
 });
 fis.config.set('modules.postpackager', postpackager);

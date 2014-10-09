@@ -4,7 +4,11 @@ var builder = require("../index.js");
 var path = require('path');
 
 var options = {
-	'paths': path.resolve('./examples/simple')
+	'paths': [
+        path.resolve('./examples/simple'),
+        path.resolve('./examples/ssite-mange'),
+        path.resolve('./examples/page')
+    ]
 };
 
 var build = builder(options);
