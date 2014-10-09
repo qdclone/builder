@@ -36,9 +36,12 @@ module.exports = {
             js: 'jshint'
         },
         postprocessor : {
-            js : ['region', plugins.define],
-            html: 'region',
+            js : ['region', plugins.define, 'jswrapper', 'require-async'],
+            html: ['region', 'require-async'],
             css: 'region',
+        },
+        optimizer : {
+            html : 'html-minifier'
         },
         prepackager : [
             // plugins.frameworkConf
@@ -61,6 +64,5 @@ module.exports = {
         path : plugins.roadmapPath
     }
 };
-
 
 
